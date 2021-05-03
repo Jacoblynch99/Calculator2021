@@ -21,8 +21,18 @@ const UserLanding = (props) => {
     return ( <div>
 
         <h1>Calculator</h1>
-        <Grid>
-            
+        <Grid
+  container
+  direction="row"
+  justify="center"
+  alignItems="center"
+>
+
+            <Grid>
+                
+            </Grid>
+
+
         </Grid>
 
     </div>
