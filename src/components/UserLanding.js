@@ -18,25 +18,42 @@ import {
 import React, { useState } from 'react'
 
 const UserLanding = (props) => {
-    let [integer, setInteger] = useState(0)
+    let [integer, setInteger] = useState([12, '+', 9])
     let [equation, setEquation] = useState([])
 
     const inputNumber = (num) => {
-        if (integer === 0) {
-            if (num === '.') {
-                setInteger(`${integer}` + `${num}`)
-            } else {
-                setInteger(num)
+        if (typeof num === 'number') {
+            let lastArrItem = integer.length - 1
+            if (typeof lastArrItem === 'number') {
+                setInteger([integer[lastArrItem]])
             }
-        } else {
-            setInteger(`${integer}` + `${num}`)
+            console.log(num)
+            // setInteger([...integer, concat])
         }
+
+        if (typeof num === 'string') {
+            setInteger([...integer, num])
+        }
+
+        // if (integer === 0) {
+        //     if (num === '.') {
+        //         setInteger(`${integer}` + `${num}`)
+        //     } else {
+        //         setInteger(num)
+        //     }
+        // } else {
+        //     setInteger(`${integer}` + `${num}`)
+        // }
     }
 
-    const inputOperation = (operation) => {}
+    const inputOperation = (integer) => {}
 
     const clear = () => {
         setInteger(0)
+    }
+
+    const consol = () => {
+        console.log(integer)
     }
 
     return (
@@ -50,7 +67,7 @@ const UserLanding = (props) => {
             >
                 <Grid>
                     <Button
-                        onClick={() => inputOperation('+')}
+                        onClick={() => inputNumber('+')}
                         variant="contained"
                         color="primary"
                     >
@@ -135,10 +152,20 @@ const UserLanding = (props) => {
                     </Button>
                 </Grid>
                 <h1>{integer}</h1>
-                <h2>{equation}</h2>
+                {/* <h2>{equation}</h2> */}
                 <br />
                 <Button onClick={clear} variant="contained" color="primary">
                     clear
+                </Button>
+                <Button onClick={consol} variant="contained" color="primary">
+                    Console
+                </Button>
+                <Button
+                    onClick={() => inputOperation(integer)}
+                    variant="contained"
+                    color="primary"
+                >
+                    Submit
                 </Button>
             </Grid>
         </div>
